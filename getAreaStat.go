@@ -42,6 +42,7 @@ func areaParse(csvFile *os.File, data []GetAreaStat) {
 		"治愈人数",
 		"死亡人数",
 		"编号",
+		"历史数据",
 	}
 
 	writer.Write(title)
@@ -54,8 +55,9 @@ func areaParse(csvFile *os.File, data []GetAreaStat) {
 			strconv.Itoa(post.CuredCount),
 			strconv.Itoa(post.DeadCount),
 			strconv.Itoa(post.LocationId),
+			post.StatisticsData,
 		}
-		err := writer.Write(line)
+		writer.Write(line)
 		for _, city := range post.Cities {
 			cityLine := []string{
 				city.CityName,
@@ -70,11 +72,6 @@ func areaParse(csvFile *os.File, data []GetAreaStat) {
 		}
 		writer.Write([]string{})
 
-		if err != nil {
-			panic(err)
-		}
-		if err != nil {
-			panic(err)
-		}
 	}
+	writer.Flush()
 }

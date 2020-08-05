@@ -86,12 +86,7 @@ func wolrdParse(csvFile *os.File, data []GetListByCountryType) {
 			post.DeadRate,
 			post.StatisticsData,
 		}
-		err := writer.Write(line)
-		if err != nil {
-			panic(err)
-		}
-		if err != nil {
-			panic(err)
-		}
+		writer.Write(line)
 	}
+	writer.Flush()
 }
